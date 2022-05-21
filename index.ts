@@ -2,6 +2,7 @@ import express, {json} from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import {handleError} from "./utils/errors";
+import {pool} from "./utils/db";
 
 
 const app = express();
@@ -11,9 +12,9 @@ app.use(cors({
 app.use(json());
 
 // Routes ...
-app.get('/', async (req, res)=>{
-   throw new Error('Daamn!')
-});
+app.use('/', async ( req ,res) =>{
+    res.send(pool)
+})
 app.use(handleError);
 
 
