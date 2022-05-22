@@ -18,7 +18,7 @@ export class AddRecords implements AddEntity {
         if(!obj.name || obj.name.length > 100){
             throw new ValidationError('Nazwa ogłoszenia nie może być pusta, ani przekaraczać 100 znaków.')
         }
-        if(obj.description.length < 1000){
+        if(obj.description.length > 1000){
             throw new ValidationError('Treśc ogłoszenia nie może przekraczac 1000 znaków');
         }
         if (obj.price < 0 || obj.price> 999999999){
@@ -31,5 +31,7 @@ export class AddRecords implements AddEntity {
         if (typeof obj.lon !== 'number' ||  typeof obj.lat !== 'number' ){
             throw new ValidationError(' Nie można zlokalizaowac ogłoszenia.')
         }
+
+        this.name = this.name;
     }
 }
