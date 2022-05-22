@@ -31,7 +31,15 @@ export class AddRecords implements AddEntity {
         if (typeof obj.lon !== 'number' ||  typeof obj.lat !== 'number' ){
             throw new ValidationError(' Nie można zlokalizaowac ogłoszenia.')
         }
+        this.name = obj.name;
+        this.description = obj.description;
+        this.price = obj.price;
+        this.url = obj.url;
+        this.lat = obj.lat;
+        this.lon = obj.lon;
 
-        this.name = this.name;
+
+
     }
+
 }
