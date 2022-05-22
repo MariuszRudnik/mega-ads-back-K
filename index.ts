@@ -2,8 +2,8 @@ import express, {json} from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import {handleError} from "./utils/errors";
+import './utils/db';
 import {pool} from "./utils/db";
-
 
 const app = express();
 app.use(cors({
@@ -13,7 +13,9 @@ app.use(json());
 
 // Routes ...
 app.use('/', async ( req ,res) =>{
-    res.send(pool)
+    console.log(pool)
+
+    res.send('dd')
 })
 app.use(handleError);
 

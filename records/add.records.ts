@@ -1,11 +1,14 @@
-import {AddEntity} from "../types/add/ad-entity";
+import {AddEntity, NewAdEntity} from "../types/add/ad-entity";
+import { pool } from "../utils/db";
 import {ValidationError} from "../utils/errors";
+import {FieldPacket} from "mysql2";
 
-interface NewAdEntity extends Omit<AddEntity, 'id'>{
-    id?:string;
-}
+
+
+type AdRecordResults = [AddEntity[], FieldPacket[]]
 
 export class AddRecords implements AddEntity {
+
     description: string;
     id: string;
     lat: number;
@@ -31,15 +34,20 @@ export class AddRecords implements AddEntity {
         if (typeof obj.lon !== 'number' ||  typeof obj.lat !== 'number' ){
             throw new ValidationError(' Nie można zlokalizaowac ogłoszenia.')
         }
+        this.id = obj.id;
         this.name = obj.name;
         this.description = obj.description;
         this.price = obj.price;
         this.url = obj.url;
         this.lat = obj.lat;
         this.lon = obj.lon;
+    }
 
-
-
+    static async getOne(id: string):Promise<AddRecords | null> {
+        const [results] = await pool.execute("SELECT * FROM `ads` WHERE id = :id",{
+            id,
+        }) as AdRecordResults;
+        return results.length === 0 ? null: new AddRecords(results[0]);
     }
 
 }
