@@ -5,6 +5,7 @@ import {handleError} from "./utils/errors";
 import './utils/db';
 import {pool} from "./utils/db";
 import rateLimit from 'express-rate-limit'
+import {adRouter} from "./routers/ad.record";
 
 const app = express();
 app.use(cors({
@@ -17,11 +18,10 @@ app.use(rateLimit({
 }))
 
 // Routes ...
-app.use('/', async ( req ,res) =>{
-    console.log(pool)
 
-    res.send('dd')
-})
+
+
+app.use('/', adRouter )
 app.use(handleError);
 
 
