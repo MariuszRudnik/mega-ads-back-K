@@ -1,8 +1,8 @@
-import {AddEntity, NewAdEntity} from "../types/add/ad-entity";
+import {AddEntity, NewAdEntity, SimpleAdEntity} from "../types/add/ad-entity";
 import { pool } from "../utils/db";
 import {ValidationError} from "../utils/errors";
 import {FieldPacket} from "mysql2";
-
+import {v4 as uuid} from 'uuid'
 
 
 type AdRecordResults = [AddEntity[], FieldPacket[]]
@@ -48,6 +48,25 @@ export class AddRecords implements AddEntity {
             id,
         }) as AdRecordResults;
         return results.length === 0 ? null: new AddRecords(results[0]);
+    }
+    static async findAll(name: string):Promise<SimpleAdEntity[]>{
+        const [results] =await pool.execute("SELECT * FROM `ads` WHERE `name` LIKE :search", {
+            search: `%${name}%`,
+        }) as AdRecordResults;
+        return results.map(result => {
+            const {id, lat, lon} = result;
+            return {
+                id, lat, lon
+            }
+        });
+    };
+    async insert():Promise<void>{
+        if(!this.id){
+            this.id = uuid()
+        } else {
+            throw new Error('Cannot insert something that is already inserted!');
+        }
+        await pool.execute("INSERT INTO `ads`(`id`, `name`, `description`, `price`, `url`, `lat`, `lon`) VALUES(:id, :name, :description, :price, :url, :lat, :lon)", this);
     }
 
 }
