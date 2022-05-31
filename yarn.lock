@@ -638,6 +638,13 @@
   "resolved" "https://registry.npmjs.org/@types/cors/-/cors-2.8.12.tgz"
   "version" "2.8.12"
 
+"@types/express-rate-limit@^6.0.0":
+  "integrity" "sha512-nZxo3nwU20EkTl/f2eGdndQkDIJYwkXIX4S3Vrp2jMdSdFJ6AWtIda8gOz0wiMuOFoeH/UUlCAiacz3x3eWNFA=="
+  "resolved" "https://registry.npmjs.org/@types/express-rate-limit/-/express-rate-limit-6.0.0.tgz"
+  "version" "6.0.0"
+  dependencies:
+    "express-rate-limit" "*"
+
 "@types/express-serve-static-core@^4.17.18":
   "integrity" "sha512-P1BJAEAW3E2DJUlkgq4tOL3RyMunoWXqbSCygWo5ZIWTjUgN1YnaXWW4VWl/oc8vs/XoYibEGBKP0uZyF4AHig=="
   "resolved" "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.17.28.tgz"
@@ -1313,7 +1320,12 @@
   "resolved" "https://registry.npmjs.org/express-async-errors/-/express-async-errors-3.1.1.tgz"
   "version" "3.1.1"
 
-"express@^4.16.2", "express@^4.18.1":
+"express-rate-limit@*", "express-rate-limit@^6.4.0":
+  "integrity" "sha512-lxQRZI4gi3qAWTf0/Uqsyugsz57h8bd7QyllXBgJvd6DJKokzW7C5DTaNvwzvAQzwHGFaItybfYGhC8gpu0V2A=="
+  "resolved" "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-6.4.0.tgz"
+  "version" "6.4.0"
+
+"express@^4 || ^5", "express@^4.16.2", "express@^4.18.1":
   "integrity" "sha512-zZBcOX9TfehHQhtupq57OF8lFZ3UZi08Y97dwFCkD8p9d/d2Y3M+ykKcwaMDEL+4qyUolgBDX6AblpR3fL212Q=="
   "resolved" "https://registry.npmjs.org/express/-/express-4.18.1.tgz"
   "version" "4.18.1"
