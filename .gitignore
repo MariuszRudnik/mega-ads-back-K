@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 #mine
-utils/db.ts
+./config/config.ts
